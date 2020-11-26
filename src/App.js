@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import './App.css';
 import Albums from "./components/albums";
 import Counter from "./components/counter";
+import Toggle from "./components/toggle";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <div className="container">
         <Albums />
         <Counter />
+        <Toggle />
       </div>
     </div>
   );
