@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Surprise from "./surprise";
+import Button from 'react-bootstrap/Button';
 
 class Toggle extends Component {
   state = {
@@ -13,8 +14,7 @@ class Toggle extends Component {
     return (
       <div style={{ margin: "20px" }}>
         <h2>Challenge 3: Toggle</h2>
-        <h3>Click the button to {!this.state.showSurprise ? "show" : "remove" } the surprise</h3>
-        <button onClick={this.revealSurprise}>Click me</button>
+        <Button variant="outline-success" onClick={this.revealSurprise}>{!this.state.showSurprise ? "Show" : "Remove" } the cute sloth</Button>
         {this.state.showSurprise ? <Surprise /> : ""}
       </div>
     );

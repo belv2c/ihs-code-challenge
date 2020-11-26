@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Button from 'react-bootstrap/Button';
 
 class Counter extends Component {
   state = {
@@ -16,8 +17,8 @@ class Counter extends Component {
       <div style={{ marginBottom: "50px" }}>
         <h2>Challenge 2: Counter</h2>
         <p>Count is: {this.state.count}</p>
-        <button onClick={this.add}>+</button>
-        <button onClick={this.subtract}>-</button>
+        <Button variant="outline-success" onClick={this.add}>+</Button>{' '}
+        <Button variant="outline-danger" onClick={this.subtract}>-</Button>{' '}
       </div>
     );
   }

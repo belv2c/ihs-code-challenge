@@ -8,8 +8,8 @@ class Surprise extends Component {
 
   render() {
     return (
-      <div>
-        <img src={cuteSloth} alt="Sloth" />
+      <div style={{ margin: "20px"}}>
+        <img style={{height: "200px", width: "300px"}} src={cuteSloth} alt="Sloth" />
       </div>
     );
   }
