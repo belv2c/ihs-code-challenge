@@ -7,7 +7,7 @@ Fork this repository and create a pull request when you are finished with the ch
 
 Convert four class components to stateful functional components:
 * You are given four react components - albums.js, counter.js, surprise.js and toggle.js 
-* Refactor these class components into functional componentsinto functional components using react hooks 
+* Refactor these class components into functional components using react hooks 
 
 ## Required Knowledge
 * Javascript ES6
