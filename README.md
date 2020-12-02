@@ -1,3 +1,19 @@
+# React Coding Challenge
+
+This challenge has been created to test the skills of React developers.
+
+## Challenge
+Fork this repository and create a pull request when you are finished with the challenge.
+
+Convert four class components to stateful functional components:
+* You are given four react components - albums.js, counter.js, surprise.js and toggle.js 
+* Refactor these class components into functional componentsinto functional components using react hooks 
+
+## Required Knowledge
+* Javascript ES6
+* React 
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
