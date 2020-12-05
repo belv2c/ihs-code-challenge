@@ -1,42 +1,22 @@
-@import 'bootstrap/dist/css/bootstrap.min.css';
+@import "bootstrap/dist/css/bootstrap.min.css";
 
-.App {
-  text-align: center;
+.album {
+  margin-top: 5px;
+  width: 18rem;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.surprise {
+  margin-top: 20px;
+}
+.surprise img {
+  height: 200px;
+  width: 300px;
 }
 
-.App-header {
-  background-color: rgb(42, 116, 42);
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.challenge {
+  margin-bottom: 50px;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-.Album {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+button + button {
+  margin-left: 5px;
 }

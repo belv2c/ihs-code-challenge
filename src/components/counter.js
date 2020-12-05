@@ -1,27 +1,18 @@
-import React, { Component } from "react";
+import React from "react";
 import Button from 'react-bootstrap/Button';
+import useCounter from '../hooks/useCounter';
+import Challenge from './challenge';
 
-class Counter extends Component {
-  state = {
-    count: 0
-  };
-  add = () => {
-    this.setState({ count: this.state.count + 1 });
-  };
-  subtract = () => {
-    this.setState({ count: this.state.count - 1 });
-  };
+const Counter = props => {
+  const [count, incrementCount, decrementCount] = useCounter();
 
-  render() {
-    return (
-      <div style={{ marginBottom: "50px" }}>
-        <h2>Challenge 2: Counter</h2>
-        <p>Count is: {this.state.count}</p>
-        <Button variant="outline-success" onClick={this.add}>+</Button>{' '}
-        <Button variant="outline-danger" onClick={this.subtract}>-</Button>{' '}
-      </div>
-    );
-  }
-}
+  return (
+    <Challenge {...props} title='Counter'>
+      <p>Count is: {count}</p>
+      <Button variant="outline-success" onClick={incrementCount}>+</Button>
+      <Button variant="outline-danger" onClick={decrementCount}>-</Button>
+    </Challenge>
+  );
+};
 
 export default Counter;

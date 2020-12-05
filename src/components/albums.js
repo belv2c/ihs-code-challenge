@@ -1,50 +1,83 @@
-import React, { Component } from "react";
-import { Button, Card, Container, Row, Col } from 'react-bootstrap';
-import '../App.css';
-import PetSoundsCover from '../PetSoundsCover.jpg';
-import RevolverCover from '../RevolverCover.jpg';
+import React, { useState, useEffect } from "react";
+import { Button, Card, Spinner } from 'react-bootstrap';
+import axios from "axios";
+import Challenge from './challenge';
 
-class Albums extends Component {
-  state = {
-    image: RevolverCover,
-    releaseYear: 1966,
-    name: "The Beatles",
-    album: "Revolver",
-    used: false
+import PetSoundsCover from '../assets/PetSoundsCover.jpg';
+import RevolverCover from '../assets/RevolverCover.jpg';
+import UndertowCover from '../assets/UndertowCover.jpg';
+import AlbumCoverNotAvailable from '../assets/AlbumCoverNotAvailable.png'
+
+const Albums = props => {
+  const [isLoadingData, setIsLoadingData] = useState(true);
+  const [albums, setAlbums] = useState([]);
+  const [currentAlbum, setCurrentAlbum] = useState({});
+
+  const {
+    album,
+    image,
+    name,
+    releaseYear,
+    used
+  } = currentAlbum;
+
+  const coverImage = {
+    PetSoundsCover,
+    RevolverCover,
+    UndertowCover
   };
 
-  switchAlbum = () => {
-    this.setState({
-      image: PetSoundsCover,
-      releaseYear: 1966,
-      name: "The Beach Boys",
-      album: "Pet Sounds",
-      used: true
-    });
+  const switchAlbum = () => {
+    const currentAlbumIndex = albums.indexOf(currentAlbum);
+    const nextAlbumIndex = currentAlbumIndex === -1 || currentAlbumIndex === albums.length - 1
+      ? 0
+      : currentAlbumIndex + 1;
+
+    setCurrentAlbum(albums[nextAlbumIndex] ?? {});
   };
 
-  render() {
-    return (
-      <Container>
-        <Row>
-          <Col>
-          <h2>Challenge 1: Switch Albums</h2>
-          <Card className="Album" style={{ width: '18rem', display: 'inline-flex', margin: '50px' }}>
-            <Card.Img variant="top" src={this.state.image} />
+  useEffect(() => {
+    (async() => {
+      try {
+        const {data: {albums}} = await axios.get(
+          "http://my-json-server.typicode.com/robertmirro/ihs-markit-albums/mockdata"
+        );
+
+        setAlbums(albums);
+      } catch (err) {
+        console.error(err);
+      } finally {
+        setIsLoadingData(false);
+      }
+    })();
+  }, []);
+
+  useEffect(() => {
+    switchAlbum();
+  }, [isLoadingData]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  return (
+    <Challenge {...props} title='Switch Albums'>
+      <div className="album d-inline-flex justify-content-center">
+        {isLoadingData &&
+          <Spinner animation="border" />
+        }
+
+        {!isLoadingData &&
+          <Card>
+            <Card.Img variant="top" src={coverImage[image] ?? AlbumCoverNotAvailable} />
               <Card.Body>
-                  <Card.Text>{this.state.album}</Card.Text>
-                  <Card.Text>{this.state.name}</Card.Text>
-                  <Card.Text>{this.state.releaseYear}</Card.Text>
-                  <Card.Text>{this.state.used ? "Used Album" : "New Album"}</Card.Text>
-                  <Button variant="outline-success" onClick={this.switchAlbum}>Switch Album</Button>
+                <Card.Text>{album}</Card.Text>
+                <Card.Text>{name}</Card.Text>
+                <Card.Text>{releaseYear}</Card.Text>
+                <Card.Text>{used ? "Used" : "New"} Album</Card.Text>
+                <Button variant="outline-success" onClick={switchAlbum}>Switch Album</Button>
               </Card.Body>
           </Card>
-          </Col>
-        </Row>
-      </Container>
-       
-    );
-  }
-}
+        }
+      </div>
+    </Challenge>
+  );
+};
 
 export default Albums;

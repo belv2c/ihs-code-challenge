@@ -1,24 +1,24 @@
-import React, { Component } from "react";
-import Surprise from "./surprise";
+import React, { useState } from "react";
 import Button from 'react-bootstrap/Button';
+import useToggle from '../hooks/useToggle';
+import Challenge from './challenge';
+import Surprise from "./surprise";
 
-class Toggle extends Component {
-  state = {
-    showSurprise: true
-  };
-  revealSurprise = () => {
-    this.setState({ showSurprise: !this.state.showSurprise });
+const Toggle = props => {
+  const [isShown, toggleIsShown] = useToggle();
+  const [scrollIntoView, setScrollIntoView] = useState(false);
+
+  const _toggleIsShown = () => {
+    setScrollIntoView(true);
+    toggleIsShown();
   };
 
-  render() {
-    return (
-      <div style={{ margin: "20px" }}>
-        <h2>Challenge 3: Toggle</h2>
-        <Button variant="outline-success" onClick={this.revealSurprise}>{!this.state.showSurprise ? "Show" : "Remove" } the cute sloth</Button>
-        {this.state.showSurprise ? <Surprise /> : ""}
-      </div>
-    );
-  }
-}
+  return (
+    <Challenge {...props} title='Toggle'>
+      <Button variant="outline-success" onClick={_toggleIsShown}>{isShown ? "Remove" : "Show"} the cute-ish sloth</Button>
+      <Surprise {...{isShown, scrollIntoView }} />
+    </Challenge>
+  );
+};
 
 export default Toggle;
