@@ -8,6 +8,9 @@
 # testing
 /coverage
 
+# vs code history
+.history
+
 # production
 /build
 

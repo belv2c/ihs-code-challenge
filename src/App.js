@@ -1,12 +1,11 @@
-import React, { useState } from "react";
-import ReactDOM from "react-dom";
+import React from "react";
 import './App.css';
 import { Jumbotron, Container } from 'react-bootstrap';
 import Albums from "./components/albums";
 import Counter from "./components/counter";
 import Toggle from "./components/toggle";
-
 function App() {
+  
   return (
     <div className="App">
       <Jumbotron fluid>
