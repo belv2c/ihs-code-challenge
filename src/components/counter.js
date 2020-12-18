@@ -1,27 +1,36 @@
-import React, { Component } from "react";
-import Button from 'react-bootstrap/Button';
+import React, { useReducer } from "react";
+import Button from "react-bootstrap/Button";
 
-class Counter extends Component {
-  state = {
-    count: 0
-  };
-  add = () => {
-    this.setState({ count: this.state.count + 1 });
-  };
-  subtract = () => {
-    this.setState({ count: this.state.count - 1 });
-  };
+const initialCount = 0;
+const countReducer = (state, action) => {
+    switch (action.type) {
+        case "add": {
+            return state + 1;
+        }
+        case "subtract": {
+            return state - 1;
+        }
+        default:
+            throw new Error(`Invalid action dispatched to countReducer: ${action.type}`);
+    }
+};
 
-  render() {
+const Counter = () => {
+    const [count, countDispatch] = useReducer(countReducer, initialCount);
+    const add = () => countDispatch({ type: "add" });
+    const subtract = () => countDispatch({ type: "subtract" });
     return (
-      <div style={{ marginBottom: "50px" }}>
-        <h2>Challenge 2: Counter</h2>
-        <p>Count is: {this.state.count}</p>
-        <Button variant="outline-success" onClick={this.add}>+</Button>{' '}
-        <Button variant="outline-danger" onClick={this.subtract}>-</Button>{' '}
-      </div>
+        <div style={{ marginBottom: "50px" }}>
+            <h2>Challenge 2: Counter</h2>
+            <p>Count is: {count}</p>
+            <Button variant="outline-success" onClick={add}>
+                +
+            </Button>
+            <Button variant="outline-danger" onClick={subtract}>
+                -
+            </Button>
+        </div>
     );
-  }
-}
+};
 
 export default Counter;
