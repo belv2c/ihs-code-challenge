@@ -1,24 +1,21 @@
-import React, { Component } from "react";
-import Surprise from "./surprise";
-import Button from 'react-bootstrap/Button';
+import React, { useState } from "react"
+import Surprise from "./surprise"
+import Button from 'react-bootstrap/Button'
 
-class Toggle extends Component {
-  state = {
-    showSurprise: true
-  };
-  revealSurprise = () => {
-    this.setState({ showSurprise: !this.state.showSurprise });
-  };
+function Toggle() {
 
-  render() {
-    return (
-      <div style={{ margin: "20px" }}>
-        <h2>Challenge 3: Toggle</h2>
-        <Button variant="outline-success" onClick={this.revealSurprise}>{!this.state.showSurprise ? "Show" : "Remove" } the cute sloth</Button>
-        {this.state.showSurprise ? <Surprise /> : ""}
-      </div>
-    );
-  }
+  const [showSurprise, setShowSurprise] = useState(true)
+
+  const revealSurprise = () => setShowSurprise(curr => !curr)
+
+  return (
+    <div style={{ margin: "20px" }}>
+      <h2>Challenge 3: Toggle</h2>
+      <Button variant="outline-success" onClick={revealSurprise}>{!showSurprise ? "Show" : "Remove"} the cute sloth</Button>
+      {showSurprise ? <Surprise /> : ""}
+    </div>
+  )
+
 }
 
-export default Toggle;
+export default Toggle
