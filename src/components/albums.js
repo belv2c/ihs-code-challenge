@@ -16,14 +16,14 @@ const initialState = {
 const Albums = (props) => {
   const [album, setAlbum] = useState(initialState)
 
-  const beachBoys = [{
+  const beachBoys = {
     type: 'switchAlbum',
     image: PetSoundsCover,
     releaseYear: 1966,
     name: "The Beach Boys",
     album: "Pet Sounds",
     used: true
-  }]
+  }
 
   return (
     <Container>
