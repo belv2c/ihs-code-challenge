@@ -1,9 +1,6 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import App from './App';
-import Albums from './components/albums';
-
-const acceptableRenderTime = 1000;
 
 test('renders learn react link', () => {
   render(<App />);
@@ -11,21 +8,29 @@ test('renders learn react link', () => {
   expect(linkElement).toBeInTheDocument();
 });
 
-describe('render albums', () => {
-  render(<Albums />);
-  const albums = document.querySelector('div.container');
-  const button = document.querySelector('div.container button');
+describe('album works', () => {
+  beforeEach(async () => {
+    render(<App />);
+    await waitFor(() => {
+      expect(document.body).toContainElement(document.querySelector('.Album'));
+    })
+  });
 
-  test('default album is Revolver by The Beatles', () => {
-    expect(albums).toHaveTextContent("The Beatles");
-    expect(albums).toHaveTextContent("Revolver");
+  test('default album is Revolver by The Beatles', async () => {
+    const album = document.querySelector('.Album');
+    expect(album).toHaveTextContent("The Beatles");
+    expect(album).toHaveTextContent("Revolver");
   });
 
   test('after a button click, the album is Pet Sounds by The Beach Boys', async () => {
-    userEvent.click(button);
-    setTimeout(() => {
-      expect(albums).toHaveTextContent("The Beach Boys");
-      expect(albums).toHaveTextContent("Pet Sounds");
-    }, acceptableRenderTime)
+    const album = document.querySelector('.Album');
+    userEvent.click(document.querySelector('div.container button'));
+
+    await waitFor(() => {
+      expect(document.body).toContainElement(document.querySelector('.Album'));
+    })
+
+    expect(album).toHaveTextContent("The Beach Boys");
+    expect(album).toHaveTextContent("Pet Sounds");
   })
-})
+});
