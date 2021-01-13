@@ -3,9 +3,9 @@ import userEvent from '@testing-library/user-event';
 import App from './App';
 
 const jsdomAlert = window.alert;
-window.alert = () => { };
 
 test('renders learn react link', () => {
+  window.alert = () => { };
   render(<App />);
   const linkElement = screen.getByText(/Welcome to the IHS Markit Code Challenge!/i); // TODO: This initial test is not passing. I think it was left over from the boilerplate. Switching the text to something that can be found on the working app.
   expect(linkElement).toBeInTheDocument();
@@ -13,6 +13,7 @@ test('renders learn react link', () => {
 
 describe('album works', () => {
   beforeEach(async () => {
+    window.alert = () => { };
     render(<App />);
     await waitFor(() => {
       expect(document.body).toContainElement(document.querySelector('.Album'));
@@ -40,6 +41,7 @@ describe('album works', () => {
 
 describe('counter works', () => {
   beforeEach(async () => {
+    window.alert = () => { };
     render(<App />);
     await waitFor(() => {
       expect(screen.getByText("+")).toBeInTheDocument();
@@ -71,6 +73,7 @@ describe('counter works', () => {
 
 describe('toggle works', () => {
   beforeEach(async () => {
+    window.alert = () => { };
     render(<App />);
     await waitFor(() => {
       expect(screen.getByText(/the cute sloth/i)).toBeInTheDocument();
