@@ -1,30 +1,38 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { Button, Card, Container, Row, Col } from 'react-bootstrap';
 import '../App.css';
 import PetSoundsCover from '../PetSoundsCover.jpg';
 import RevolverCover from '../RevolverCover.jpg';
 
-
-export default function Albums() {
-  const initialAlbum = {
+const albums = [
+  {
     image: RevolverCover,
     releaseYear: 1966,
     name: "The Beatles",
     album: "Revolver",
     used: false
-  };
-
-  const [album, setAlbum] = useState(initialAlbum)
-
-  const switchAlbum = () => {
-    setAlbum({
-      image: PetSoundsCover,
-      releaseYear: 1966,
-      name: "The Beach Boys",
-      album: "Pet Sounds",
-      used: true
-    })
+  },
+  {
+    image: PetSoundsCover,
+    releaseYear: 1966,
+    name: "The Beach Boys",
+    album: "Pet Sounds",
+    used: true
   }
+]
+
+export const useAlbumsFactory = () => {
+  const [album, setAlbum] = useState(albums[0]);
+  const switchAlbum = useCallback(() => setAlbum(albums[1]), []);
+  return {
+    album,
+    switchAlbum
+  };
+};
+
+
+export default function Albums() {
+  const { album, switchAlbum } = useAlbumsFactory();
 
   return (
     <Container>
