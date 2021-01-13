@@ -65,3 +65,31 @@ describe('counter works', () => {
     expect(document.body).toHaveTextContent("Count is: -1");
   });
 });
+
+describe('toggle works', () => {
+  beforeEach(async () => {
+    render(<App />);
+    await waitFor(() => {
+      expect(screen.getByText(/the cute sloth/i)).toBeInTheDocument();
+    })
+  });
+
+  test('toggle hides image and shows image', async () => {
+    userEvent.click(screen.getByText(/Remove.*?/i));
+
+    await waitFor(() => {
+      expect(document.body).not.toHaveTextContent(/Remove.*?/i);
+    })
+
+    expect(screen.queryByAltText('Sloth')).toBeNull();
+
+    userEvent.click(screen.getByText(/Show.*?/i));
+
+    await waitFor(() => {
+      expect(document.body).not.toHaveTextContent(/Show.*?/i);
+    })
+
+    expect(screen.queryByAltText('Sloth')).not.toBeNull();
+  });
+
+})
