@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import ReactDOM from "react-dom";
+import React from "react";
 import './App.css';
 import { Jumbotron, Container } from 'react-bootstrap';
 import Albums from "./components/albums";
