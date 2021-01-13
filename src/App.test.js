@@ -34,3 +34,34 @@ describe('album works', () => {
     expect(album).toHaveTextContent("Pet Sounds");
   })
 });
+
+describe('counter works', () => {
+  beforeEach(async () => {
+    render(<App />);
+    await waitFor(() => {
+      expect(screen.getByText("+")).toBeInTheDocument();
+    })
+  });
+
+  test('add button works', async () => {
+    const addButton = screen.getByText("+");
+    userEvent.click(addButton);
+
+    await waitFor(() => {
+      expect(document.body).not.toHaveTextContent("Count is: 0");
+    })
+
+    expect(document.body).toHaveTextContent("Count is: 1");
+  });
+
+  test('substract button works', async () => {
+    const substractButton = screen.getByText("-");
+    userEvent.click(substractButton);
+
+    await waitFor(() => {
+      expect(document.body).not.toHaveTextContent("Count is: 0");
+    })
+
+    expect(document.body).toHaveTextContent("Count is: -1");
+  });
+});
