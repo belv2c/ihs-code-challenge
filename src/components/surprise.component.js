@@ -1,18 +1,19 @@
-import React, { Component } from "react";
+import React, {useEffect} from 'react';
 import cuteSloth from '../cuteSloth.jpg';
 
-class Surprise extends Component {
-  componentWillUnmount() {
-    alert("Now I must go");
-  }
+const Surprise = () => {
 
-  render() {
-    return (
+  useEffect(() => {
+    return ()=> {
+      alert('Now I must go');
+    }
+  }, [])
+  return(
+    // alert('Now I must go');
       <div style={{ margin: "20px"}}>
         <img style={{height: "200px", width: "300px"}} src={cuteSloth} alt="Sloth" />
       </div>
     );
-  }
 }
 
 export default Surprise;
