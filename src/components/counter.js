@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import Button from 'react-bootstrap/Button';
 
-const Counter = props => {
+function Counter(){
   const [count ,setCount] = useState(0); 
 
-  function add() {
+  const add = () => {
     setCount(count + 1)
   }
-  function subtract() {
+
+  const subtract = () => {
     setCount(count - 1)
   }
 

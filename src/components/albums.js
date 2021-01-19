@@ -4,14 +4,14 @@ import '../App.css';
 import PetSoundsCover from '../PetSoundsCover.jpg';
 import RevolverCover from '../RevolverCover.jpg';
 
-const Albums = props => {
+function Albums(){
   const [releaseYear ,setReleaseYear] = useState(1966); 
   const [name ,setName] = useState("The Beatles"); 
   const [album ,setAlbum] = useState("Revolver"); 
   const [used ,setUsed] = useState(false); 
   const [image ,setImage] = useState(RevolverCover); 
 
-  function switchAlbum(){
+  const switchAlbum = () => {
      setImage(PetSoundsCover); 
      setReleaseYear(1966); 
      setName("The Beach Boys"); 

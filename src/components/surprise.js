@@ -1,7 +1,7 @@
 import React, { useState, useEffect} from "react";
 import cuteSloth from '../cuteSloth.jpg';
 
-const Surprise = props => {
+function Surprise(){
 
   useEffect(() => {
     // component unmounted
