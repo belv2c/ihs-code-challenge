@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import ReactDOM from "react-dom";
+import React, { useState } from 'react';
+import ReactDOM from 'react-dom';
 import './App.css';
 import { Jumbotron, Container } from 'react-bootstrap';
-import Albums from "./components/albums";
-import Counter from "./components/counter";
-import Toggle from "./components/toggle";
+import Albums from './components/albums';
+import Counter from './components/counter';
+import Toggle from './components/toggle';
 
 function App() {
   return (
