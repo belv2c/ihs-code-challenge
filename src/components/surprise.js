@@ -2,9 +2,6 @@ import React, { useEffect } from 'react';
 import cuteSloth from '../cuteSloth.jpg';
 
 const Surprise = () => {
-  // componentWillUnmount() {
-  //   alert("Now I must go");
-  // }
   useEffect(() => {
     return () => {
       alert('Now I must go');

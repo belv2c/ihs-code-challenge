@@ -15,11 +15,6 @@ const Albums = () => {
 
   const { image, releaseYear, name, album, used } = localState;
 
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setLocalState((localState) => ({ ...localState, [name]: value }));
-  };
-
   const switchAlbum = () => {
     setLocalState({
       image: PetSoundsCover,
